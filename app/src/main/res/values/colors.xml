@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00ACC1</color>
+    <color name="colorPrimaryDark">#00ACC1</color>
+    <color name="colorPrimaryLight">#00ACC1</color>
+
+    <color name="colorSecondary">#99E5EE</color>
+    <color name="colorSecondaryDark">#99E5EE</color>
+    <color name="colorSecondaryLight">#F8F7F7</color>
+    <color name="colorToolbar">#FF3D3737</color>
+    <color name="grayLight">#FCF7F7</color>
+    <color name="colorAccent">#006DF3</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="button">#A235E5</color>
+    <color name="lightGrayTransparent">#F1EFEF</color>
+    <color name="riderColor">#00a8f3</color>
+</resources>
