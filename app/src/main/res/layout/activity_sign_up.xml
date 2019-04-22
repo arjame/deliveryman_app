@@ -32,7 +32,7 @@
                 android:layout_gravity="center">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/viewImage"
+                    android:id="@+id/imgProfile"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
@@ -44,8 +44,8 @@
                     android:id="@+id/btnSelectPhoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignEnd="@+id/viewImage"
-                    android:layout_alignBottom="@+id/viewImage"
+                    android:layout_alignEnd="@+id/imgProfile"
+                    android:layout_alignBottom="@+id/imgProfile"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginEnd="1dp"
                     android:layout_marginBottom="1dp"
