@@ -23,6 +23,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
@@ -30,11 +38,14 @@ import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText txt_Name,txt_Mail,txt_Phone,txt_Address,txt_Description,txt_Password;
+    private ProgressBar progressBar;
+    private FirebaseAuth mAuth;
     //*********Define variables to read from camera and put in ImageView
     String myUri;
     private Uri image_uri;
     private de.hdodenhof.circleimageview.CircleImageView imgProfile;
     ImageButton btnSelectPhoto;
+    Button btn_Confirm;
     private Bitmap imageBitmap;
     private static final int PICK_IMAGE = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
@@ -63,6 +74,10 @@ public class SignUpActivity extends AppCompatActivity {
         txt_Mail = findViewById(R.id.etMail);
         txt_Phone = findViewById(R.id.etPhone);
         txt_Description = findViewById(R.id.etDescription);
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.GONE);
+
+        mAuth = FirebaseAuth.getInstance();
         //End of defining variables
 
         //***Checking validation of Name
@@ -73,6 +88,19 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 validateName(txt_Name.getText().toString());
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+        //Validate email
+        txt_Mail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                validateEmail(txt_Mail.getText().toString());
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -92,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        Button btn_Confirm = findViewById(R.id.btnConfirm);
+        btn_Confirm = findViewById(R.id.btnConfirm);
         btn_Confirm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -108,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
                 {
                     txt_Mail.requestFocus();
                 } else {
-                  return;
+                  registerUser();
                 }
             }
         });
@@ -278,10 +306,61 @@ public class SignUpActivity extends AppCompatActivity {
         image_uri = Uri.parse(image);
         imgProfile.setImageURI(image_uri);
     }
-    //...................................
+    //....................................
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null) {
+            //handle the already login user
+        }
+    }
 
 
+    private void registerUser(){
+        final String name = txt_Name.getText().toString().trim();
+        final String email = txt_Mail.getText().toString().trim();
+        final String password = txt_Password.getText().toString().trim();
+        final String phone = txt_Phone.getText().toString().trim();
+        final String description = txt_Description.getText().toString().trim();
+        progressBar.setVisibility(View.VISIBLE);
+        btn_Confirm.setEnabled(false);
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        if (task.isSuccessful()) {
+
+                            RiderUser riderUser= new RiderUser();
+                            riderUser.setName(name);
+                            riderUser.setEmail(email);
+                            riderUser.setPassword(password);
+                            riderUser.setPhone(phone);
+                            riderUser.setShortdescription(description);
+                            riderUser.setImageUrl(String.valueOf(image_uri));
+
+                            FirebaseDatabase.getInstance().getReference("RiderUsers")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(riderUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    progressBar.setVisibility(View.GONE);
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignUpActivity.this, "Registered successfully", Toast.LENGTH_LONG).show();
+                                        btn_Confirm.setEnabled(true);
+                                    } else {
+                                        //display a failure message
+                                    }
+                                }
+                            });
+
+                        } else {
+                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
 
 
 }
