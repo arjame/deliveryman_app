@@ -21,7 +21,7 @@ public class ApplyHelpActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 case R.id.navigation_apply_now:
-                    intent = new Intent(ApplyHelpActivity.this, EditActivity.class);
+                    intent = new Intent(ApplyHelpActivity.this, SignUpActivity.class);
                     startActivity(intent);
                     return true;
             }
@@ -41,7 +41,7 @@ public class ApplyHelpActivity extends AppCompatActivity {
         btnApplyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ApplyHelpActivity.this, EditActivity.class);
+                Intent intent = new Intent(ApplyHelpActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });

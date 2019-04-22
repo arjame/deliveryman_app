@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@color/riderColor" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/viewImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
+                    android:contentDescription="@string/Img_des"
+                    android:src="@drawable/personal" />
+
+                <ImageButton
+                    android:id="@+id/btnSelectPhoto"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignEnd="@+id/viewImage"
+                    android:layout_alignBottom="@+id/viewImage"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@drawable/btn_camera"
+                    android:src="@drawable/ic_camera_alt_black_24dp" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <EditText
+                    android:id="@+id/edtFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="@color/riderColor"
+                    android:hint="Enter your full name"
+                    android:inputType="textPersonName"
+                    android:textSize="18sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <EditText
+                    android:id="@+id/etMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mail"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="@color/riderColor"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="26"
+                    android:textSize="18sp" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <EditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your password"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="@color/riderColor"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:textSize="18sp" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your phone number"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="@color/riderColor"
+                    android:inputType="phone"
+                    android:maxLength="16"
+                    android:textSize="18sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Description"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="sans-serif"
+                    android:textColorHint="@color/riderColor"
+                    android:maxLength="70"
+                    android:textSize="@dimen/font_size" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/btnConfirm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@color/riderColor"
+                    android:text="@string/confirm"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/font_size" />
+
+
+
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/riderColor"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/font_size" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+
